@@ -1,7 +1,8 @@
+require('dotenv').config();
+
 const express = require('express');
 const axios = require('axios');
 const { parse } = require('csv-parse/sync');
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,9 +25,10 @@ app.get('/semrush', async (req, res) => {
 
     const csv = response.data;
     const records = parse(csv, {
-      columns: true,
-      skip_empty_lines: true
-    });
+  columns: true,
+  skip_empty_lines: true,
+  delimiter: ';'
+});
 
     res.json(records);
  } catch (err) {
