@@ -29,10 +29,10 @@ app.get('/semrush', async (req, res) => {
     });
 
     res.json(records);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: 'Failed to fetch from SEMrush' });
-  }
+ } catch (err) {
+  console.error('Erro completo:', err.response?.data || err.message);
+  res.status(500).json({ error: 'Failed to fetch from SEMrush' });
+}
 });
 
 app.listen(PORT, () => {
